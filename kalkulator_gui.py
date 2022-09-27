@@ -4,15 +4,22 @@ from tkinter import *
 expr = str()
 
 calc= Tk()
-frame = Frame(calc)
-frame.pack()
 calc.title("Calculator")
 calc.config(background='#F8EDE3')
-num_btn = Button(
-    frame,
-    text='test',
-    command=None
-)
-num_btn.grid()
+
+frame = Frame(calc)
+frame.pack()
+
+num_btn = list()
+for i in range(1, 10):
+    button = Button(
+        frame,
+        text=f"  {i}  ",
+        fg='black',
+        bg='#D0B8A8',
+        command=None
+    )
+    button.grid(row=(i-1) // 3, column=(i-1) % 3)
+    num_btn.append(button)
 
 calc.mainloop()
