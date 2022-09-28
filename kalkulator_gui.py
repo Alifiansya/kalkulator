@@ -15,6 +15,8 @@ if __name__ == "__main__":
     equation = StringVar(frame)
     expr_field = Entry(
         frame,
+        state=DISABLED,
+        disabledforeground='black',
         textvariable=equation,
         width=33
     )
@@ -90,7 +92,7 @@ if __name__ == "__main__":
             text="  .  ",
             fg='black',
             bg='#D0B8A8',
-            command=None,
+            command=lambda: press_dot(equation),
             width=5
     )
     dot_btn.grid(row=5, column=2)
@@ -100,7 +102,7 @@ if __name__ == "__main__":
         text="  =  ",
         fg='black',
         bg='#D0B8A8',
-        command=None,
+        command=lambda: press_equal(equation),
         width=5
     )
     equal_btn.grid(row=5, column=3)
@@ -110,5 +112,9 @@ if __name__ == "__main__":
         if i in ['<=', 'C']:
             continue
         op_btn[i].configure(command=lambda i=i: press_op(i, equation))
+    
+    op_btn["<="].configure(command=lambda:press_larrow(equation))
+    op_btn['C'].configure(command=lambda:press_c(equation))
     calc.mainloop()
+
     print(op_btn)
